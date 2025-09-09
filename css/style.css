@@ -43,12 +43,86 @@ a {
   padding: 15px;
 }
 
-main {
+.principal {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
-h1 {
-  background-color: blue;
+.titulo {
+  margin-top: 60px;
+  padding-top: 20px;
+  font-size: 5rem;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.img_rosto {
+  background-color: tomato;
+  /*Margin: TOPO Direita inferior Esquerda; */
+  margin: 30px 10px 30px 10px;
+  height: 90%;
+  width: 90%;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  width: 90%;
+}
+
+h3 {
+  font-size: 2.5rem;
+  margin: 0px 10px 20px 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+article .lerolero {
+  margin: 10px;
+  text-align: justify;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-items: center;
+}
+
+.coluna{
+  background-color: azure;
+}
+
+footer .row {
+  display: flex;
+  flex-direction: row;
+  background-color: tomato;
+  justify-content: space-between;
+
+}
+
+/*Margin: TOPO Direita inferior Esquerda; */
+.plano {
+  margin: 0px;
+  align-items: center;
+}
+
+.valor {
+  background-color: #000;
+  color: #ffff;
+  margin-top: 30px;
+}
+
+ul {
+  padding: 25px;
+  align-items: center;
 }
