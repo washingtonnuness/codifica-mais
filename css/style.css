@@ -102,7 +102,7 @@ footer {
   background-color: azure;
 }
 
-footer .row {
+.row {
   display: flex;
   flex-direction: row;
   background-color: tomato;
@@ -112,8 +112,10 @@ footer .row {
 
 /*Margin: TOPO Direita inferior Esquerda; */
 .plano {
-  margin: 0px;
+  margin: 0px, 30px, 0px 30px;
   align-items: center;
+  background-color: rgb(149, 176, 30);
+
 }
 
 .valor {
