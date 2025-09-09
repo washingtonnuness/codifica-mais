@@ -10,7 +10,7 @@ body {
   font-style: normal;
   font-variation-settings: "wdth" 100;
   font-size: 1.2rem;
-  background-color: cadetblue;
+  background-color: #1C6EA4;
 }
 
 ul,
@@ -23,7 +23,7 @@ a {
   color: #ffff;
 }
 .header {
-  background-color: #1d1e20;
+  background-color: #154D71;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -63,7 +63,7 @@ a {
   justify-content: center;
 }
 .img_rosto {
-  background-color: tomato;
+
   /*Margin: TOPO Direita inferior Esquerda; */
   margin: 30px 10px 30px 10px;
   height: 90%;
@@ -95,25 +95,26 @@ footer {
 }
 
 .coluna {
+    background-color: #33A1E0;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  background-color: azure;
+
 }
 
 .row {
   display: flex;
   flex-direction: row;
-  background-color: tomato;
   justify-content: space-between;
   margin-left: 60px;
   margin-right: 60px;
+  
 }
 
 /*Margin: TOPO Direita inferior Esquerda; */
 .plano {
   align-items: center;
-  background-color: rgb(149, 176, 30);
+  background-color: #FFF9AF;
 }
 
 .valor {
