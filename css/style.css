@@ -92,13 +92,12 @@ article .lerolero {
 }
 
 footer {
+}
+
+.coluna {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-items: center;
-}
-
-.coluna{
   background-color: azure;
 }
 
@@ -107,15 +106,14 @@ footer {
   flex-direction: row;
   background-color: tomato;
   justify-content: space-between;
-
+  margin-left: 60px;
+  margin-right: 60px;
 }
 
 /*Margin: TOPO Direita inferior Esquerda; */
 .plano {
-  margin: 0px, 30px, 0px 30px;
   align-items: center;
   background-color: rgb(149, 176, 30);
-
 }
 
 .valor {
