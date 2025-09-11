@@ -104,16 +104,18 @@ footer {
 }
 
 .coluna {
-    background-color: #33A1E0;
+  background-color: #33A1E0;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  
+  padding: 60px
 
 }
 
 .row {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin-left: 60px;
   margin-right: 60px;
@@ -124,6 +126,9 @@ footer {
 .plano {
   align-items: center;
   background-color: #FFF9AF;
+  margin-top: 30px;
+  border-radius: 30px;
+  
 }
 
 .valor {
