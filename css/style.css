@@ -76,6 +76,7 @@ a:hover {
   margin: 30px 10px 30px 10px;
   height: 90%;
   width: 90%;
+  border-radius: 20px;
 }
 
 article {
