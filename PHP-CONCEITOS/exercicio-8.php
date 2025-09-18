@@ -1,5 +1,5 @@
 <?php
-
+//instanciado variavis notas e soma com valor 0
 $nota = 0;
 $soma = 0;
 
@@ -28,6 +28,7 @@ for($cont = 1 ; $cont < $repeticaoLoop + intval(1); $cont++){
 
         //se a média for maior ele está aprovado !!!     
         }elseif ($result>=6){
+            //exibe mensagem de Aprovado 
             echo "Parabéns tua média foi $result está Aprovado !!!!".PHP_EOL;
         }
     }
