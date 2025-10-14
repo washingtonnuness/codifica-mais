@@ -83,14 +83,14 @@ body {
 
 .card-player .player .player-superior .barra-tempo {
   background-color: rgb(113, 148, 247);
-  width: 95.8%;
+  width: 97.67%;
   margin-left: 30px;
   height: 20px;
 }
 
 .card-player .player .player-superior .barra-tempo .barra {
   background-color: rgb(53, 139, 214);
-  width: 60%;
+  width: 20%;
 }
 
 .card-player .player .player-superior .tempo-progresso {
