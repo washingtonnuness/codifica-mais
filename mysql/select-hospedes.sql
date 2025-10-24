@@ -1,0 +1,1 @@
+SELECT * FROM hospedes WHERE data_nascimento >= "1990-01-01" order by data_nascimento asc;
