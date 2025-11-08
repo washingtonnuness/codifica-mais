@@ -1,5 +1,5 @@
 # Dependências geradas pelo Composer
-/vendor/
+PHP-COMPOSER/CARBON/vendor
 
 # Arquivos de configuração locais
 /.env
