@@ -1,0 +1,23 @@
+{
+  "name": "acme/data",
+  "autoload": {
+    "psr-4": {
+      "Acme\\Carbon\\": "src/"
+    }
+  },
+  "description": "composer-a1: LIDANDO COM DATA E HORA",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Washington Nunes",
+      "email": "washingtonnuness@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.3",
+    "nesbot/carbon": "^3.10",
+    "symfony/form": "^7.3",
+    "user-meta/html": "^1.1",
+    "symfony/var-dumper": "^7.3"
+  }
+}
