@@ -1,42 +1,47 @@
 <?php
 require 'vendor/autoload.php';
 
-use UserMeta\Html\Html;
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 
-echo "<h1> Bem vindo </h1>";
+use Nette\Forms\Form;
 
-$form = new Html('form', ['method' => 'POST']);
-$form->date(['name' => 'data_nascimento', 'label' => 'Data Nascimento']);
-$form->submit('Enviar');
-echo $form->render();
+$dt = Carbon::now()->setlocale('pt-br');
 
-// Se o formulário foi enviado
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $dataNascimento = $_POST['data_nascimento'];
+echo '<link rel="stylesheet" type="text/css" href="./src/style.css">';
+
+$form = new Form;
+$form->addText('nome', 'Nome completo')
+    ->setRequired();
+$form->addDate('data_nascimento', 'Data Nascimento:')
+    ->setRequired();
+
+$form->addSubmit('send', 'Enviar');
+
+$form->render();
+
+
+if ($form->isSuccess()) {
+    $nome = $_POST['nome'];
+    $data_nascimento = $_POST['data_nascimento'];
+
+    $dataHoje = Carbon::now('America/Sao_Paulo');
+    //$nascimento = Carbon::createMidnightDate(1987, 3, 14, 'America/Sao_Paulo');
+    //Qual a diferença das duas formas createMid e Fromdate ?
+    $nascimento = Carbon::createFromDate($data_nascimento, 'America/Sao_Paulo');
+    //echo Carbon::now('America/Vancouver')->diffInSeconds(Carbon::now('Europe/London')); // 4.0E-6
+    echo "<div class='content'>";
+    echo "<h1> Seja bem vindo, {$nome}</h1>";
+    echo "<h2>Aqui algumas informações !!! </h2>";
+    echo "<h3>Dias proximo aniversario</h3>";
+    echo "<div class = 'respostas'>" . $dataHoje->diffInDays(Carbon::createFromDate(2026, 3, 14, 'America/Sao_Paulo')) . "</div>";
+    echo "<h3>Calcular quantos anos de vida você tem</h3>";
+    echo "<div class = 'respostas'>" . $nascimento->diffInYears($dataHoje) . "</div>";
+    echo "<h3>Calcular quantos dias de vida você tem</h3>";
+    echo "<div class = 'respostas'>" . $nascimento->diffInDays($dataHoje) . "</div>";
+    echo "<h3>Mostrar que dia da semana você nasceu</h3>";
+    echo "<div class = 'respostas'>" . $nascimento->dayName . "</div>";
+
+    echo "</div>";
+    $form->close();
 }
-echo  $dataNascimento = $_POST['data_nascimento'];
-
-$nascimento = Carbon::createMidnightDate(1987, 3, 14, 'America/Sao_Paulo');
-//Qual a diferença das duas formas createMid e Fromdate ?
-$nascimento2 = Carbon::createFromDate(1987, 3, 14, 'America/Sao_Paulo');
-$dataHoje = Carbon::now('America/Sao_Paulo')->toDateString();
-//echo Carbon::now('America/Vancouver')->diffInSeconds(Carbon::now('Europe/London')); // 4.0E-6
-echo "<ul>";
-echo "<li>";
-echo "<h3>Dias proximo aniversario</h3>";
-echo Carbon::now('America/Sao_Paulo')->diffInDays(Carbon::createFromDate(2026, 3, 14, 'America/Sao_Paulo')) . '<br>';
-echo "</li>";
-echo "<li>";
-echo "<h3>Calcular quantos anos de vida você tem</h3>";
-echo $nascimento2->diffInYears($dataHoje) . '<br>';
-echo "</li>";
-echo "<li>";
-echo "<h3>Calcular quantos dias de vida você tem</h3>";
-echo  $nascimento2->diffInDays($dataHoje);
-echo "</li>";
-echo "<li>";
-echo "<h3>Mostrar que dia da semana você nasceu</h3>";
-echo $nascimento2->dayName . '<br>';
-echo "</li>";
-echo "</ul>";
