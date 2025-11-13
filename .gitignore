@@ -1,0 +1,33 @@
+# Dependências geradas pelo Composer
+PHP-COMPOSER/CARBON/vendor
+
+# Arquivos de configuração locais
+/.env
+/.env.local
+/.env.*.local
+
+# Cache e logs
+/storage/
+logs/
+cache/
+
+# Arquivos de sistema e IDEs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Arquivos temporários e de build
+/tmp/
+*.log
+*.cache
+
+# Backup e dumps
+*.bak
+*.old
+*.sql
+*.sqlite
+
+# Composer autoload gerado
+/composer.lock
