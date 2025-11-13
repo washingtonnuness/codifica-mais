@@ -1,0 +1,1 @@
+SELECT * FROM produtos AS p JOIN fornecedores AS f ;
