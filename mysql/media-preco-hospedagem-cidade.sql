@@ -1,0 +1,1 @@
+SELECT h.cidade, concat('R$ ',TRUNCATE(AVG(r.valor_noite), 2 )) AS "Valor médio" FROM reservas AS r INNER JOIN hospedagens AS h ON h.id_hospedagem  = r.id_hospedagem GROUP BY h.cidade;
