@@ -21,7 +21,7 @@ $page = $_GET['page'] ?? 'login';
 switch ($page) {
     case 'registrar':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $auth->registrar($_POST['nome'], $_POST['email'], $_POST['senha']);
+            $auth->registrar($_POST['usuario'], $_POST['email'], $_POST['senha']);
             header("Location: index.php?page=login");
         }
         include '../src/Views/registrar.php';
