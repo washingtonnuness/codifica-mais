@@ -1,0 +1,19 @@
+{
+    "name": "vendor/app",
+    "description": "Aplicativo para login e controle de usuário",
+    "require": {
+        "nesbot/carbon": "^3.11",
+        "symfony/var-dumper": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vendor\\App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "washingtonnuness",
+            "email": "washingtonnuness@gmail.com"
+        }
+    ]
+}
