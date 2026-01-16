@@ -56,19 +56,20 @@ class AuthController
         ]);
     }
 
-    public function atualizar(int $id, string $usuario, string $email)
+    public function atualizar(int $id, string $usuario, string $email, string $senha, string $editarProdutos)
     {
+
         $stmt = $this->pdo->prepare(
-            "UPDATE usuarios SET nome = ?, email = ? WHERE id = ?"
+            "UPDATE usuarios SET nome = ?, email = ?, senha = ?, edit_produtos = ? WHERE id = ?"
         );
 
-        return $stmt->execute([$usuario, $email, $id]);
+        return $stmt->execute([$usuario, $email, $senha, $editarProdutos, $id]);
     }
 
     public function listarTodos()
     {
         return $this->pdo
-            ->query("SELECT id, nome, email FROM usuarios ORDER BY nome ASC")
+            ->query("SELECT id, nome, email, edit_produtos FROM usuarios ORDER BY nome ASC")
             ->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -91,6 +92,13 @@ class AuthController
         session_destroy();
         header('Location: index.php');
         exit;
+    }
+
+    public function buscarPorId($id)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM usuarios WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 }
     // private \PDO $pdo;
@@ -117,11 +125,4 @@ class AuthController
     // {
     //     $stmt = $this->pdo->prepare("UPDATE usuarios SET nome = ?, email = ? WHERE id = ?");
     //     return $stmt->execute([$nome, $email, $id]);
-    // }
-
-    // public function buscarPorEmail($email)
-    // {
-    //     $stmt = $this->pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
-    //     $stmt->execute([$email]);
-    //     return $stmt->fetch(\PDO::FETCH_ASSOC);
     // }

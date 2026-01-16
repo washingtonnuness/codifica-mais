@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 
-<?php include __DIR__ . '/head.html'; ?>
+<?php include __DIR__ . '/../head.html'; ?>
 
 <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -132,22 +132,34 @@
     <div class="container-fluid">
         <div class="row">
             <!-- MENU Comeco  -->
-
-            <? include __DIR__ . '/menu.html'; ?>
-
+            <? include __DIR__ . '/../menu.html'; ?>
             <!-- MENU FIM  -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Dashboard</h1>
+                    <h1 class="h2">Dashboard Produtos</h1>
+                    <?php if (isset($_GET['msg'])): ?>
+                        <div class="alert alert-<?= $_GET['msg'] === 'sucesso' ? 'success' : 'danger' ?> alert-dismissible fade show" role="alert">
+                            <?= $_GET['msg'] === 'sucesso' ? 'Produto cadastrado com sucesso!' : 'Erro ao cadastrar produto.' ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    <?php endif; ?>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group me-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">
-                                Share
+                            <!-- Botão para abrir o modal -->
+                            <button type="button"
+                                class="btn btn-primary"
+                                hx-get="index.php?page=produtos/modal-adicionar"
+                                hx-target="#modal-content"
+                                hx-trigger="click"
+                                data-bs-toggle="modal"
+                                data-bs-target="#addProductModal">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#plus-circle" />
+                                </svg>
+                                Adicionar Produto
                             </button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">
-                                Export
-                            </button>
+
                         </div>
                         <button type="button"
                             class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
@@ -158,61 +170,125 @@
                         </button>
                     </div>
                 </div>
+                <div>
+                    <!-- Modal de Edição (base vazio) -->
+                    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <!-- Este é o alvo do htmx -->
+                                <div id="modal-content-editar" class="p-4 text-center">
+                                    <!-- Conteúdo será substituído pelo htmx -->
+                                    <div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Carregando...</span>
+                                    </div>
+                                    <p class="mt-3">Carregando formulário de edição...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal base para adicionar produto -->
+                    <div class="modal fade" id="addProductModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <!-- Este é o alvo do htmx -->
+                                <div id="modal-content" class="p-4 text-center">
+                                    <!-- Placeholder enquanto carrega -->
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Carregando...</span>
+                                    </div>
+                                    <p class="mt-3">Carregando formulário...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
                 <div class="table-responsive small">
                     <table class="table table-striped table-sm">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
                                 <th scope="col">ID</th>
-                                <th>Usuário</th>
-                                <th>Edita Produtos</th>
-                                <th>Ação</th>
-                                <th>Excluir</th>
+                                <th scope="col">Foto</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Preço</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Ações</th>
+                                <th scope="col">Excluir</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php foreach ($usuarios as $u): ?>
-
+                        <tbody id="lista-produtos">
+                            <?php if (empty($produtos)): ?>
                                 <tr>
-                                    <td><?= $u['id'] ?></td>
-                                    <td><?= htmlspecialchars($u['nome']) ?></td>
-                                    <td>
-                                        <?php if ($u['edit_produtos'] !== "S"): ?>
-                                            <?= $u['edit_produtos'] ?>
-                                        <?php else: ?>
-                                            <?= htmlspecialchars($u['edit_produtos']) ?>
-                                        <?php endif; ?>
+                                    <td colspan="7" class="text-center py-4 text-muted">
+                                        Nenhum produto cadastrado ainda.
                                     </td>
-                                    <td>
-                                        <?php if ($u['id'] === $_SESSION['user_id']): ?>
-                                            <a href="index.php?page=editar&id=<?= $u['id'] ?>">Editar</a>
-                                        <?php else: ?>
-                                            <span style="color: gray;">Sem permissão</span>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <?php if ($u['id'] === $_SESSION['user_id']): ?>
-                                            <a href="index.php?page=excluir&id=<?= $u['id'] ?>">
+                                </tr>
+                            <?php else: ?>
+                                <?php foreach ($produtos as $p): ?>
+                                    <tr>
+                                        <td><?= $p['id'] ?></td>
+                                        <td>
+                                            <?php if (!empty($p['imagem'])): ?>
+                                                <img src="/imagens/produtos/<?= htmlspecialchars($p['imagem']) ?>"
+                                                    alt="Foto do produto"
+                                                    width="80"
+                                                    class="img-thumbnail rounded"
+                                                    onerror="this.src='/imagens/produtos/placeholder.jpg'; this.onerror=null;">
+                                            <?php else: ?>
+                                                <div class="bg-light border rounded d-inline-block" style="width:60px;height:60px;"></div>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><?= htmlspecialchars($p['nome']) ?></td>
+                                        <td>R$ <?= number_format($p['preco'], 2, ',', '.') ?></td>
+                                        <td><?= $p['quantidade'] ?></td>
+                                        <td>
+                                            <span class="badge <?= $p['status'] ? 'bg-success' : 'bg-danger' ?>">
+                                                <?= $p['status'] ? 'Ativo' : 'Inativo' ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <?php foreach ($usuarios as $u): ?>
+                                                <?php if ($u['edit_produtos'] === "S"): ?>
+                                                    <button type="button" class="btn btn-warning btn-sm"
+                                                        hx-get="index.php?page=modal-editar&id=<?= $p['id'] ?>"
+                                                        hx-target="#modal-content-editar"
+                                                        hx-swap="innerHTML"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#editProductModal">
+                                                        Editar
+                                                    </button>
+                                                <?php else: ?>
+                                                    <span style="color: gray;">Sem permissão</span>
+                                                <?php endif; ?>
+
+                                            <?php endforeach ?>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-sm"
+                                                hx-delete="index.php?page=produtos/excluir&id=<?= $p['id'] ?>"
+                                                hx-confirm="Tem certeza que deseja excluir este produto?"
+                                                hx-target="closest tr"
+                                                hx-swap="outerHTML">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
                                                     <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                                                 </svg>
-                                            </a>
-                                        <?php else: ?>
-                                            <span style="color: gray;">Sem permissão</span>
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
             </main>
         </div>
     </div>
-    <!-- Scripts Comeco  -->
-    <? include __DIR__ . '/scripts.html'; ?>
-    <!-- Scripts FIM  -->
+    <!-- scripts Comeco  -->
+    <? include __DIR__ . '/../scripts.html'; ?>
+    <!-- //echo (dirname(__DIR__, 2) . '\scripts.html'); -->
+    <!-- scripts FIM  -->
 </body>
 
 </html>

@@ -126,6 +126,13 @@
                 <input type="text" class="form-control" id="formGroupExampleInput" name="usuario" placeholder="digite teu usuário">
             </div>
             <div class="form-group">
+                <label for="formGroupExampleInput">Editar produtos</label>
+                <select class="form-select" aria-label="Default select example" name="editarProdutos">
+                    <option value="S">Sim</option>
+                    <option value="N">Não</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp"
                     placeholder="usuario@gmail.com">
@@ -139,9 +146,9 @@
         <p><a href="index?page=login">Já tem conta? Faça login</a></p>
 
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+    <!-- Scripts Comeco  -->
+    <? include __DIR__ . '/scripts.html'; ?>
+    <!-- Scripts FIM  -->
 </body>
 
 </html>
