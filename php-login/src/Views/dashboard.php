@@ -1,106 +1,7 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
-    <meta name="generator" content="Astro v5.13.2" />
-    <title>Dashboard Template · Bootstrap v5.3</title>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-    <meta name="theme-color" content="#712cf9" />
-    <link href="./css/dashboard.css" rel="stylesheet" />
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        .b-example-divider {
-            width: 100%;
-            height: 3rem;
-            background-color: #0000001a;
-            border: solid rgba(0, 0, 0, 0.15);
-            border-width: 1px 0;
-            box-shadow:
-                inset 0 0.5em 1.5em #0000001a,
-                inset 0 0.125em 0.5em #00000026;
-        }
-
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
-
-        .bi {
-            vertical-align: -0.125em;
-            fill: currentColor;
-        }
-
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .btn-bd-primary {
-            --bd-violet-bg: #712cf9;
-            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-            --bs-btn-font-weight: 600;
-            --bs-btn-color: var(--bs-white);
-            --bs-btn-bg: var(--bd-violet-bg);
-            --bs-btn-border-color: var(--bd-violet-bg);
-            --bs-btn-hover-color: var(--bs-white);
-            --bs-btn-hover-bg: #6528e0;
-            --bs-btn-hover-border-color: #6528e0;
-            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-            --bs-btn-active-color: var(--bs-btn-hover-color);
-            --bs-btn-active-bg: #5a23c8;
-            --bs-btn-active-border-color: #5a23c8;
-        }
-
-        .bd-mode-toggle {
-            z-index: 1500;
-        }
-
-        .bd-mode-toggle .bi {
-            width: 1em;
-            height: 1em;
-        }
-
-        .bd-mode-toggle .dropdown-menu .active .bi {
-            display: block !important;
-        }
-    </style>
-</head>
+<?php include __DIR__ . '/head.html'; ?>
 
 <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -230,89 +131,11 @@
     </header>
     <div class="container-fluid">
         <div class="row">
-            <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
-                <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
-                    aria-labelledby="sidebarMenuLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="sidebarMenuLabel">
+            <!-- MENU Comeco  -->
 
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="index.php?page=dashboard">
-                                    <svg class="bi" aria-hidden="true">
-                                        <use xlink:href="#house-fill"></use>
-                                    </svg>
-                                    Home
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="#">
-                                    <svg class="bi" aria-hidden="true">
-                                        <use xlink:href="#file-earmark"></use>
-                                    </svg>
-                                    Pedidos
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="#">
-                                    <svg class="bi" aria-hidden="true">
-                                        <use xlink:href="#cart"></use>
-                                    </svg>
-                                    Produtos
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="#">
-                                    <svg class="bi" aria-hidden="true">
-                                        <use xlink:href="#people"></use>
-                                    </svg>
-                                    Usuários
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="#">
-                                    <svg class="bi" aria-hidden="true">
-                                        <use xlink:href="#graph-up"></use>
-                                    </svg>
-                                    Relatórios
-                                </a>
-                            </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="#">
-                                    <svg class="bi" aria-hidden="true">
-                                        <use xlink:href="#puzzle"></use>
-                                    </svg>
-                                    Integrações
-                                </a>
-                            </li> -->
-                        </ul>
-                        <hr class="my-3" />
-                        <ul class="nav flex-column mb-auto">
-                            <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="#">
-                                    <svg class="bi" aria-hidden="true">
-                                        <use xlink:href="#gear-wide-connected"></use>
-                                    </svg>
-                                    Configurações
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="index.php?page=logout">
-                                    <svg class="bi" aria-hidden="true">
-                                        <use xlink:href="#door-closed"></use>
-                                    </svg>
-                                    Sair
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <? include __DIR__ . '/menu.html'; ?>
+
+            <!-- MENU FIM  -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -342,15 +165,24 @@
                             <tr>
                                 <th scope="col">ID</th>
                                 <th>Usuário</th>
+                                <th>Edita Produtos</th>
                                 <th>Ação</th>
                                 <th>Excluir</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($usuarios as $u): ?>
+
                                 <tr>
                                     <td><?= $u['id'] ?></td>
                                     <td><?= htmlspecialchars($u['nome']) ?></td>
+                                    <td>
+                                        <?php if ($u['edit_produtos'] !== "S"): ?>
+                                            <?= $u['edit_produtos'] ?>
+                                        <?php else: ?>
+                                            <?= htmlspecialchars($u['edit_produtos']) ?>
+                                        <?php endif; ?>
+                                    </td>
                                     <td>
                                         <?php if ($u['id'] === $_SESSION['user_id']): ?>
                                             <a href="index.php?page=editar&id=<?= $u['id'] ?>">Editar</a>
@@ -378,20 +210,9 @@
             </main>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"
-        integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"
-        class="astro-vvvwv3sm"></script>
-    <script src="./css/dashboard.js" class="astro-vvvwv3sm"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
-        integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
-        crossorigin="anonymous"></script>
+    <!-- Scripts Comeco  -->
+    <? include __DIR__ . '/scripts.html'; ?>
+    <!-- Scripts FIM  -->
 </body>
 
 </html>
